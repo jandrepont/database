@@ -26,7 +26,7 @@ CREATE TABLE usr
 CREATE TABLE topic
 (
 	topic_id      INT PRIMARY KEY,
-    title   varchar(40) 
+    title   varchar(40)
 );
 
 CREATE TABLE has_subtopic
@@ -60,7 +60,7 @@ CREATE TABLE document
 CREATE TABLE book
 (
     doc_id              INT PRIMARY KEY,
-    doi                 varchar(250) UNIQUE,    
+    doi                 varchar(250) UNIQUE,
     publisher           varchar(250),
     foreign key (doc_id) references document on delete cascade
 );
@@ -72,7 +72,7 @@ CREATE TABLE paper
     foreign key (doc_id) references document on delete cascade
 );
 
-CREATE TABLE notes  
+CREATE TABLE notes
 (
     doc_id              INT PRIMARY KEY,
     course              varchar(50),
@@ -82,16 +82,16 @@ CREATE TABLE notes
 --=============================================================
 
 --=========================== Author ==========================
-CREATE TABLE author  
+CREATE TABLE author
 (
     author_id          INT PRIMARY KEY,
     name_              varchar(50)
 );
 
-CREATE TABLE written_by  
+CREATE TABLE written_by
 (
     author_id               INT,
-    doc_id                  INT,     
+    doc_id                  INT,
     PRIMARY KEY(author_id, doc_id),
     foreign key (doc_id) references document on delete cascade,
     foreign key (author_id) references author on delete cascade
@@ -132,10 +132,10 @@ CREATE TABLE has_interest
     usr_id        varchar(16),
     foreign key (topic_id) references topic on delete cascade,
     foreign key (usr_id) references usr on delete cascade,
-    PRIMARY KEY(topic_id, usr_id) 
+    PRIMARY KEY(topic_id, usr_id)
 );
 
-CREATE TABLE recommended_docs 
+CREATE TABLE recommended_docs
 (
     grade           INT,
     usr_id          VARCHAR(16),
@@ -144,8 +144,5 @@ CREATE TABLE recommended_docs
     foreign key (usr_id) references usr on delete cascade,
     foreign key (majorName) references major on delete cascade,
     foreign key (doc_id) references document on delete cascade,
-    PRIMARY KEY(usr_id, majorName, doc_id) 
+    PRIMARY KEY(usr_id, majorName, doc_id)
 );
-
-
-
